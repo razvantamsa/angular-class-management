@@ -1,0 +1,18 @@
+<div class="class-list">
+    <mat-card>
+        <mat-card-title>List of all the classes</mat-card-title>
+        <mat-card-actions>
+            <button mat-button [matMenuTriggerFor]="menu">
+                Filter 
+                <fa-icon [icon]="faFilter"></fa-icon>
+            </button>
+            <mat-menu #menu="matMenu" yPosition="above">
+                <button mat-menu-item>Item 1</button>
+                <button mat-menu-item>Item 2</button>
+            </mat-menu>
+        </mat-card-actions>
+    </mat-card>
+</div>
+<div *ngFor="let class of classes">
+    <app-class [class]="class"></app-class>
+</div>

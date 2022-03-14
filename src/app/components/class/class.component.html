@@ -1,0 +1,78 @@
+<mat-accordion>
+    <mat-expansion-panel (opened)="panelOpenState = true"
+                         (closed)="panelOpenState = false">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+            {{class.name}}
+        </mat-panel-title>
+        <mat-panel-description>
+            <mat-progress-bar mode="determinate" color="{{color}}" value="{{percentage}}"></mat-progress-bar>
+            <button 
+                mat-icon-button
+                matSuffix
+                color="primary"
+                >
+                <mat-icon>add</mat-icon>
+            </button>
+            <button 
+                mat-icon-button
+                matSuffix
+                color="accent"
+                >
+                <mat-icon>edit</mat-icon>
+            </button>
+            <button 
+                mat-icon-button
+                matSuffix
+                color="warn"
+                >
+                <mat-icon>delete</mat-icon>
+            </button>
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+      <mat-grid-list cols="2" rowHeight="200px">
+            <mat-grid-tile [ngStyle]="{'border-right': '1px solid black'}">
+                <div class="column">
+                    <div 
+                        *ngFor="let student of class.students" 
+                        class="row-wrap"
+                        [ngClass]="{'stop': student.name === class.students.slice(-1)[0].name}"
+                        >
+                        <span>
+                            {{student.name}}
+                        </span>
+                        <span class="buttons">
+                            <button 
+                                mat-icon-button
+                                matSuffix
+                                color="primary"
+                                >
+                                <mat-icon>add</mat-icon>
+                            </button>
+                            <button 
+                                mat-icon-button
+                                matSuffix
+                                color="accent"
+                                >
+                                <mat-icon>edit</mat-icon>
+                            </button>
+                            <button 
+                                mat-icon-button
+                                matSuffix
+                                color="warn"
+                                >
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                        </span>
+                    </div>
+                </div>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <div class="column">
+                    <div> {{class.name}} taught by {{class.teacher}}</div>
+                    <div> {{class.students.length}} / {{class.maxNoOfStudents}} students </div>
+                </div>
+            </mat-grid-tile>
+      </mat-grid-list>
+    </mat-expansion-panel>
+</mat-accordion>

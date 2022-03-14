@@ -1,0 +1,11 @@
+.class-list mat-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    height: fit-content;
+}
+
+.class-list mat-actions-card {
+    padding: 0px 30px;
+}
