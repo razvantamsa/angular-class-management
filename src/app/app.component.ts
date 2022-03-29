@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-
+import { Component,Input } from '@angular/core';
+import { Student } from './interfaces/Student';
+import { Class } from './interfaces/Class';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+    @Input() popup:boolean = false;
+
+    emitToService(response: { action: string; _student?: Student; _class: Class; }){
+        console.log('Response from app', response);
+        this.togglePopup();
+    }
+
+    togglePopup() {
+        this.popup = !this.popup;
+    }
 }

@@ -10,6 +10,7 @@ import { Student } from 'src/app/interfaces/Student';
 })
 export class ClassComponent implements OnInit {
   @Input() class!: Class;
+  @Output() trackEventEmitter = new EventEmitter<{action: string, _class: Class, _student?: Student}>();
   panelOpenState: boolean = false;
   
   percentage: number = 0;
@@ -26,6 +27,11 @@ export class ClassComponent implements OnInit {
         this.color = 'accent';
     }
     console.log(this.class.students.slice(-1));
+  }
+
+  emitTrackedEvent(action: string, _class: Class, _student?: Student){
+    const response = { action, _class, _student };
+    this.trackEventEmitter.emit(response);
   }
 
 //   onAddStudent(_class: Class, student: Student) {

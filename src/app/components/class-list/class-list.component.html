@@ -13,6 +13,8 @@
         </mat-card-actions>
     </mat-card>
 </div>
-<div *ngFor="let class of classes">
-    <app-class [class]="class"></app-class>
-</div>
+<mat-accordion multi="true">
+    <div *ngFor="let class of classes">
+        <app-class [class]="class" (trackEventEmitter)="trackEvent($event)"></app-class>
+    </div>
+</mat-accordion>

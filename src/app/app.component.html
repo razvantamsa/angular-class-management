@@ -2,7 +2,7 @@
     <app-header></app-header>
     <main>
         <app-class-search></app-class-search>
-        <app-class-list ></app-class-list>
+        <app-class-list (popupEventEmitter)="emitToService($any($event))"></app-class-list>
     </main>
-    <!-- <app-modal ></app-modal> -->
+    <app-modal *ngIf="popup" (togglePopupEventEmitter)="togglePopup()"></app-modal>
 </div>
