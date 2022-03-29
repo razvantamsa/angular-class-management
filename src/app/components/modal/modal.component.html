@@ -1,8 +1,12 @@
 <div class="modal-background"></div>
-<div class="form-wrapper">
+<div *ngIf="response.action !== 'delete'" class="form-wrapper">
     <mat-form-field appearance="fill">
-        <mat-label>Input</mat-label>
-        <input type="text" autocomplete="off" matInput>
+        <mat-label>Class</mat-label>
+        <input type="text" value="{{response._class.name}}" autocomplete="off" matInput>
+    </mat-form-field>
+    <mat-form-field *ngIf="popup==='student'" appearance="fill">
+        <mat-label>Student</mat-label>
+        <input type="text" value="{{response._student?.name || ''}}" autocomplete="off" matInput>
     </mat-form-field>
     <span class="buttons-row">
         <button 

@@ -4,5 +4,5 @@
         <app-class-search></app-class-search>
         <app-class-list (popupEventEmitter)="emitToService($any($event))"></app-class-list>
     </main>
-    <app-modal *ngIf="popup" (togglePopupEventEmitter)="togglePopup()"></app-modal>
+    <app-modal *ngIf="popup" [response]="response" [popup]="popup" (togglePopupEventEmitter)="togglePopup()"></app-modal>
 </div>

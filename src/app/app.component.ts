@@ -1,6 +1,8 @@
-import { Component,Input } from '@angular/core';
+import { Component,EventEmitter, Output } from '@angular/core';
 import { Student } from './interfaces/Student';
 import { Class } from './interfaces/Class';
+import { Popup } from './interfaces/Popup';
+
 
 @Component({
   selector: 'app-root',
@@ -8,14 +10,25 @@ import { Class } from './interfaces/Class';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    @Input() popup:boolean = false;
+    popup: Popup = '';
+    response!:{action: string; _student?: Student; _class: Class};
 
+    // receive data from child
     emitToService(response: { action: string; _student?: Student; _class: Class; }){
-        console.log('Response from app', response);
+        this.response = response;
         this.togglePopup();
     }
 
+    // toggle a popup with 3 possible values
     togglePopup() {
-        this.popup = !this.popup;
+        if(this.popup === ''){
+            if(this.response._student){
+                this.popup = 'student';
+                return;
+            }
+            this.popup = 'class';
+            return;
+        }
+        this.popup = '';
     }
 }
