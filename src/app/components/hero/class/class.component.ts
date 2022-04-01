@@ -29,7 +29,8 @@ export class ClassComponent implements OnInit {
     console.log(this.class.students.slice(-1));
   }
 
-  emitTrackedEvent(action: string, _class: Class, _student?: Student){
+  emitTrackedEvent(event: any, action: string, _class: Class, _student?: Student){
+    event.stopPropagation();
     const response = { action, _class, _student };
     this.trackEventEmitter.emit(response);
   }

@@ -4,10 +4,10 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ClassSearchComponent } from './components/class-search/class-search.component';
-import { ClassComponent } from './components/class/class.component';
+import { ClassSearchComponent } from './components/hero/class-search/class-search.component';
+import { ClassComponent } from './components/hero/class/class.component';
 import { HeaderComponent } from './components/header/header.component';
-import { ClassListComponent } from './components/class-list/class-list.component';
+import { ClassListComponent } from './components/hero/class-list/class-list.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // angular material
@@ -22,8 +22,6 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatIconModule } from '@angular/material/icon';
 import { ModalComponent } from './components/modal/modal.component';
-
-
 
 @NgModule({
   declarations: [

@@ -1,18 +1,50 @@
 <div class="modal-background"></div>
-<div *ngIf="response.action !== 'delete'" class="form-wrapper">
-    <mat-form-field appearance="fill">
-        <mat-label>Class</mat-label>
-        <input type="text" value="{{response._class.name}}" autocomplete="off" matInput>
-    </mat-form-field>
-    <mat-form-field *ngIf="popup==='student'" appearance="fill">
-        <mat-label>Student</mat-label>
-        <input type="text" value="{{response._student?.name || ''}}" autocomplete="off" matInput>
-    </mat-form-field>
+<div class="form-wrapper">
+
+    <!-- Add or Edit Statement -->
+    <div *ngIf="response.action !== 'delete' else elseBlock">
+        <div *ngIf="(popup==='student');then addEditStudent else addEditClass"></div>
+        
+        <!-- Add or Edit Class -->
+        <ng-template #addEditClass>
+            <mat-form-field appearance="fill" #addClass>
+                <mat-label>{{response.action[0].toUpperCase() + response.action.slice(1)}} Class</mat-label>
+                <input type="text" value="{{fieldValue}}" (keyup)="changeFieldValue($event)" autocomplete="off" matInput>
+            </mat-form-field>
+        </ng-template>
+        <!-- End Add or Edit Class -->
+
+        <!-- Add or Edit Student -->
+        <ng-template #addEditStudent>
+            <mat-form-field appearance="fill">
+                <mat-label>{{response.action[0].toUpperCase() + response.action.slice(1)}} Student in {{response._class.name}}</mat-label>
+                <input type="text" value="{{fieldValue}}" autocomplete="off" matInput>
+            </mat-form-field>
+        </ng-template>
+        <!-- End Add or Edit Student -->
+    </div>
+    <!--End Add or Edit Statement-->
+
+
+    <!-- Delete Statement -->
+    <ng-template #elseBlock>
+        Are you sure you want to delete this item?
+        <br>
+        <div *ngIf="response?._student?.name else classBlock">
+            {{response._student?.name }} from {{response._class.name}}
+        </div>
+        <ng-template #classBlock>
+            {{response._class.name}}
+        </ng-template>
+    </ng-template>
+    <!-- End Delete Statement -->
+
+    <!-- Button Wrapper -->
     <span class="buttons-row">
         <button 
             mat-icon-button
             color="primary"
-            (click)="closePopup()"
+            (click)="submit()"
             >
             <mat-icon>check_circle</mat-icon>
         </button>
@@ -24,4 +56,5 @@
             <mat-icon>cancel</mat-icon>
         </button>
     </span>
+    <!-- End Button Wrapper -->
 </div>
